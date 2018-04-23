@@ -170,7 +170,7 @@ def eval_expression(expr, var_dict):
     
 # get number of chars strings differ with
 def get_difference_in_strings(string1, string2):
-    """Returns number of chars strings differ with"""
+    """Returns number of chars, strings differ with"""
     i = 0
     for a, b in zip(string1, string2):
         if a != b:
@@ -225,6 +225,11 @@ def simplify(expr):
     for bin_num in bin_numbers:
         if eval_expression(expr, dict(zip(vars, bin_num))) == True:
             output_is_1.append(int(bin_num, 2))
+    
+    if len(output_is_1) == 2 ** len(vars):
+        return "1"
+    if len(output_is_1) == 0:
+        return "0"
     
     if print_steps:
         print("Output is 1 for: ")
