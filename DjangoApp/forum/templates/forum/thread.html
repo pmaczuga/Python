@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+
+{% block path %}
+    <a href="{% url 'forum:index' %}">Categories</a> --> 
+    <a href="{% url 'forum:category_view' category.id %}">{{ category.category_text }}</a> --> 
+    <a href="{% url 'forum:thread_view' category.id thread.id %}">{{ thread.thread_text }}</a>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ thread.thread_text }}</h1>
+
+    {% for answer in answer_list %}
+        <strong>
+        {{ answer.answer_author }}<br>
+        {{ answer.answer_date }}<br>
+        </strong>
+        {{ answer.answer_text }}
+        <br>-------------------------------------------------------------<br>
+    {% endfor %}
+    <br>
+    <p>Add new answer:</p>
+    <form action="{% url 'forum:create_answer' category.id thread.id %}" method="post">
+        {% csrf_token %}
+        Text:<br>
+        <textarea name="answer_text" rows=10 cols=50></textarea>
+        <input type="submit" value="Add anwser">
+    </form>
+
+{% endblock %}
+

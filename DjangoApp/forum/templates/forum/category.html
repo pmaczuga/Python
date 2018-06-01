@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+
+{% block path %}
+    <a href="{% url 'forum:index' %}">Categories</a> --> 
+    <a href="{% url 'forum:category_view' category.id%}">{{ category.category_text }}</a>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ category.category_text }}</h1>
+    <h2>Threads:</h2>
+
+    <ul>
+    {% for thread in category.thread_set.all %}
+        <li>
+            <p style="font-size:120%;"><a href="{% url 'forum:thread_view' category.id thread.id %}">{{ thread.thread_text }}</a></p>
+            {{ thread.thread_author }}<br>
+            {{ thread.thread_date }}
+        </li>
+    {% endfor %}
+    </ul>
+    
+    <br>
+    <p>Add new thread:</p>
+    <form action="{% url 'forum:create_thread' category.id %}" method="post">
+        {% csrf_token %}
+        Thread name:<br>
+        <input type="text" name="thread_text"><br>
+        Text:<br>
+        <textarea name="answer_text" rows=10 cols=50></textarea>
+        <input type="submit" value="Add thread">
+    </form>
+
+{% endblock %}

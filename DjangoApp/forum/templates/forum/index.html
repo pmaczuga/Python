@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+
+{% block path %}
+    <a href="{% url 'forum:index' %}">Categories</a>
+{% endblock %}
+
+{% block content %}
+    <h1>Categories:</h1>
+
+    {% if category_list %}
+        <ul>
+        {% for category in category_list %}
+            <li><p style="font-size:120%;"><a href="{% url 'forum:category_view' category.id %}">{{ category.category_text }}</a></p></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        There are no categories. Only admin can add them.
+    {% endif %}
+{% endblock %}

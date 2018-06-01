@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <title>{% block title %}My forum site{% endblock %}</title>
+</head>
+<body>
+    <div id="home">
+        {% block home %}
+        <h2><a href={% url 'forum:index' %}>Home page</a></h2>
+        {% endblock %}
+    </div>
+
+    <div id="path">
+        {% block path %}
+        {% endblock %}
+    </div>
+    
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>

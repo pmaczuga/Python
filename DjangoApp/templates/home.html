@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block home %}
+    {% if user.is_authenticated %}
+        <h2>You are logged as: {{ user.username }}</h2>
+        <p><a href="{% url 'accounts:logout' %}">logout</a></p>
+    {% else %}
+        You are not logged in
+        <p>
+            <a href="{% url 'accounts:login' %}">login</a>&emsp;
+            <a href="{% url 'accounts:signup' %}">signup</a>
+        </p>
+    {% endif %}
+    <h2><a href="{% url 'forum:index' %}">Home page</a></h2>
+    <br>
+{% endblock %}
+
