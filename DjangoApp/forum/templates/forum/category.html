@@ -13,7 +13,7 @@
     {% for thread in category.thread_set.all %}
         <li>
             <p style="font-size:120%;"><a href="{% url 'forum:thread_view' category.id thread.id %}">{{ thread.thread_text }}</a></p>
-            {{ thread.thread_author }}<br>
+            Created by: <strong>{{ thread.thread_author }}</strong><br>
             {{ thread.thread_date }}
         </li>
     {% endfor %}
